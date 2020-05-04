@@ -63,8 +63,8 @@ class App extends React.Component{
   render(){
 
       return (
-        <div className="App">
-          <div>
+        <div className="container">
+          <div className="container">
             <div>
               <img src={this.randomizeImage} className="App-logo" alt="logo" />
             </div>
@@ -73,14 +73,14 @@ class App extends React.Component{
                 <img src={image.nom} className="App-logo" alt="logo" />
               </button> 
             ))} 
-            <div>
+            <div className="jumbotron">
               Score : {this.state.compteur}
             </div>
-            <div>
+            <div className="jumbotron">
               Meilleur Score : {this.state.bestScore}
             </div>
             <div>
-              <button onClick={(e) => this.handleReset()}> Reset </button>
+              <button className="btn btn-primary" onClick={(e) => this.handleReset()}> Reset </button>
             </div>
           </div>
         </div>
