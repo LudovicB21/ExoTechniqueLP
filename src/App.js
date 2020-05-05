@@ -2,17 +2,16 @@ import React from 'react';
 import './App.css';
 import flècheD from './flècheD.png';
 import flècheG from './flècheG.png';
-//import {useAlert} from 'react-alert';
 
 class App extends React.Component{
-
+  
   state = {
     images: [
       {id: 1, nom: flècheG},
       {id: 2, nom: flècheD},
     ],
     compteur: 0,
-    random: "",
+    random: 0,
     bestScore: 0,
   };
 
@@ -23,14 +22,8 @@ class App extends React.Component{
 
   randomizeImage() {
     var randomInt = Math.floor(Math.random() * this.state.images.length)
-    console.log("random : " + randomInt)
     this.setState({ random: randomInt})
     return randomInt;
-  }
-
-  handleReset(){
-    this.setState({ compteur: this.state.compteur = 0})
-    this.randomizeImage()
   }
 
 
@@ -43,22 +36,27 @@ class App extends React.Component{
       this.setState({ compteur: this.state.compteur +1})
       this.randomizeImage();
     } else {
-      this.handleReset();
+      alert("Vous avez perdue")
+      this.handlScore();
     }
   }
 
-  /*
+  
   handlScore(){
-    const score = this.state.compteur;
     const bestScore = this.state.bestScore; 
-    if( score > bestScore){
-        this.setState({ bestScore: this.state.score})
+    if( this.state.compteur > bestScore){
+        this.setState({ bestScore: this.state.compteur})
+        this.handleReset()
     } else {
-        console.log("pas un assez bon score ")
         this.handleReset()
     }
   }
-  */
+
+  handleReset(){
+    this.setState({ compteur: this.state.compteur = 0})
+    this.randomizeImage()
+  }
+  
 
   render(){
 
@@ -66,7 +64,7 @@ class App extends React.Component{
         <div className="container">
           <div className="container">
             <div>
-              <img src={this.randomizeImage} className="App-logo" alt="logo" />
+              <img src={this.state.images[this.state.random].nom} className="App-logo" alt="logo" />
             </div>
             {this.state.images.map(image =>(
               <button  onClick={(e) => this.handleClick(image.id)}>
