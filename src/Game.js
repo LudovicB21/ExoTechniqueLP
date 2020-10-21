@@ -3,7 +3,7 @@ import flècheD from './flècheD.png';
 import flècheG from './flècheG.png';
 
 class Game extends React.Component{
-  
+  //Essaie de sav
   state = {
     images: [
       {id: 1, nom: flècheG},
